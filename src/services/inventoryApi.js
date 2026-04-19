@@ -12,16 +12,17 @@ export async function getInventoryById(id) {
   return res.json();
 }
 
-export async function createInventory(data) {
-  const res = await fetch(`${BASE_URL}/inventory`, {
+// POST /register — multipart/form-data
+export async function createInventory(formData) {
+  const res = await fetch(`${BASE_URL}/register`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
+    body: formData, // FormData — не ставити Content-Type вручну!
   });
   if (!res.ok) throw new Error('Помилка створення');
   return res.json();
 }
 
+// PUT /inventory/:id — JSON, тільки текстові поля
 export async function updateInventory(id, data) {
   const res = await fetch(`${BASE_URL}/inventory/${id}`, {
     method: 'PUT',
@@ -32,11 +33,11 @@ export async function updateInventory(id, data) {
   return res.json();
 }
 
-export async function updateInventoryPhoto(id, photoPath) {
-  const res = await fetch(`${BASE_URL}/inventory/${id}`, {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ photo: photoPath }),
+// PUT /inventory/:id/photo — multipart/form-data
+export async function updateInventoryPhoto(id, formData) {
+  const res = await fetch(`${BASE_URL}/inventory/${id}/photo`, {
+    method: 'PUT',
+    body: formData, // FormData — не ставити Content-Type вручну!
   });
   if (!res.ok) throw new Error('Помилка оновлення фото');
   return res.json();
