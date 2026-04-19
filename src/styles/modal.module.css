@@ -1,0 +1,43 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px;
+  max-width: 380px;
+  width: 90%;
+}
+
+.title { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+.text { font-size: 14px; color: #6b7280; margin-bottom: 20px; }
+
+.row { display: flex; gap: 10px; justify-content: flex-end; }
+
+.btnConfirm {
+  padding: 8px 18px;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.btnConfirm:hover { background: #dc2626; }
+
+.btnCancel {
+  padding: 8px 18px;
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}

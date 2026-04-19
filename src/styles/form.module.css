@@ -1,0 +1,61 @@
+.wrapper { max-width: 520px; margin: 0 auto; padding: 24px; }
+
+.title { font-size: 20px; font-weight: 600; margin-bottom: 20px; }
+
+.field { margin-bottom: 16px; }
+
+.label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+}
+
+.textarea { resize: vertical; min-height: 80px; }
+
+.errText { font-size: 12px; color: #ef4444; margin-top: 4px; }
+
+.btnRow { display: flex; gap: 10px; margin-top: 20px; }
+
+.btnSubmit {
+  padding: 9px 20px;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+.btnSubmit:hover { background: #2563eb; }
+
+.btnCancel {
+  padding: 9px 20px;
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.btnCancel:hover { background: #e5e7eb; }
+
+.section { margin-top: 28px; padding-top: 20px; border-top: 1px solid #e5e7eb; }
+.sectionTitle { font-size: 15px; font-weight: 500; margin-bottom: 12px; }
+.hint { font-size: 12px; color: #9ca3af; margin-top: 4px; }
