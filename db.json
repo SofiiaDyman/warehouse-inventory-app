@@ -1,65 +1,70 @@
 {
   "inventory": [
     {
-      "id": "1",
+      "id": 1,
       "inventory_name": "Ноутбук Dell XPS 15",
       "description": "15.6\", Intel Core i7, 16GB RAM, 512GB SSD",
       "photo": "/images/laptop-dell.webp"
     },
     {
-      "id": "2",
+      "id": 2,
       "inventory_name": "iPhone 15 Pro",
       "description": "256GB, чорний титан, 48MP камера",
       "photo": "/images/iphone15.webp"
     },
     {
-      "id": "3",
+      "id": 3,
       "inventory_name": "Samsung Galaxy S24",
       "description": "128GB, Android 14, 6.2\"",
       "photo": "/images/samsung-s24.webp"
     },
     {
-      "id": "4",
+      "id": 4,
       "inventory_name": "iPad Pro 12.9\"",
       "description": "M2 чіп, 256GB, WiFi + Cellular",
       "photo": "/images/ipad-pro.webp"
     },
     {
-      "id": "5",
+      "id": 5,
       "inventory_name": "MacBook Air M3",
       "description": "13\", 8GB RAM, 256GB SSD, Midnight",
       "photo": "/images/macbook-air.webp"
     },
     {
-      "id": "6",
+      "id": 6,
       "inventory_name": "Sony WH-1000XM5",
       "description": "Навушники з шумопоглинанням, Bluetooth 5.2",
       "photo": "/images/sony-headphones.webp"
     },
     {
-      "id": "7",
+      "id": 7,
       "inventory_name": "Монітор LG 27UL850",
       "description": "27\", 4K UHD, IPS, USB-C",
       "photo": "/images/monitor-lg.png"
     },
     {
-      "id": "8",
+      "id": 8,
       "inventory_name": "Клавіатура Logitech MX Keys",
       "description": "Бездротова, підсвітка, для Mac/Win",
       "photo": "/images/keyboard-mx.webp"
     },
     {
-      "id": "9",
+      "id": 9,
       "inventory_name": "Миша Razer DeathAdder V3",
       "description": "26000 DPI, 90 год. батарея, USB-C",
       "photo": "/images/mouse-razer.jpg"
     },
     {
-      "id": "10",
+      "id": 10,
       "inventory_name": "Зовнішній SSD Samsung T7",
       "description": "1TB, USB 3.2 Gen2, 1050MB/s",
       "photo": "/images/ssd-samsung.jpg"
+    },
+    {
+      "id": 13,
+      "inventory_name": "ноут",
+      "description": "1 ТВ пам'яті",
+      "photo": "/images/item-1776709011868.webp"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }

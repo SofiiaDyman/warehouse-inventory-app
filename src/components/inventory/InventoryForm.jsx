@@ -116,7 +116,7 @@ export default function InventoryForm({ initial = null, mode = 'create' }) {
           <div className={styles.sectionTitle}>Оновити фото (незалежно від тексту)</div>
           {initial?.photo && (
             <img
-              src={`http://localhost:3001${initial.photo}`}
+              src={`http://localhost:3002${initial.photo}`}
               alt="поточне фото"
               className={styles.currentPhoto}
             />

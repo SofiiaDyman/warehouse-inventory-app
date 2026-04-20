@@ -7,11 +7,12 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
-const PORT = 3001;
+const PORT = 3002;
 
 // Шляхи
-const DB_PATH      = path.join(__dirname, 'db.json');
-const UPLOADS_DIR  = path.join(__dirname, 'public', 'images');
+const DB_PATH = path.join(__dirname, '..', 'db.json');
+const UPLOADS_DIR = path.join(__dirname, '..', 'public', 'images');
+app.use('/images', express.static(UPLOADS_DIR));
 
 // Якщо папки немає — створити
 if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
@@ -19,14 +20,15 @@ if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use('/images', express.static(UPLOADS_DIR));
+
 
 // Multer — зберігає файл у public/images/ з оригінальним іменем
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, UPLOADS_DIR),
-  filename:    (req, file, cb) => {
-    const ext  = path.extname(file.originalname);
-    const name = `item-${req.params.id}-${Date.now()}${ext}`;
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    // Використовуємо тільки Date.now(), бо ID на етапі завантаження ще немає
+    const name = `item-${Date.now()}${ext}`; 
     cb(null, name);
   },
 });
@@ -64,7 +66,9 @@ app.get('/inventory/:id', (req, res) => {
 app.post('/register', upload.single('photo'), (req, res) => {
   const db = readDb();
   const newItem = {
-    id:             db.inventory.length ? Math.max(...db.inventory.map(i => i.id)) + 1 : 1,
+    id: db.inventory.length
+  ? Math.max(...db.inventory.map(i => Number(i.id))) + 1
+  : 1,
     inventory_name: req.body.inventory_name,
     description:    req.body.description || '',
     photo:          req.file ? `/images/${req.file.filename}` : null,
@@ -102,7 +106,7 @@ app.put('/inventory/:id/photo', upload.single('photo'), (req, res) => {
   // Видалити старе фото якщо є
   const oldPhoto = db.inventory[idx].photo;
   if (oldPhoto) {
-    const oldPath = path.join(__dirname, 'public', oldPhoto);
+    const oldPath = path.join(__dirname, '..', 'public', oldPhoto);
     if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
   }
 
@@ -115,19 +119,27 @@ app.put('/inventory/:id/photo', upload.single('photo'), (req, res) => {
 //  DELETE /inventory/:id — видалити товар
 // ================================================
 app.delete('/inventory/:id', (req, res) => {
-  const db  = readDb();
+  const db = readDb();
   const idx = db.inventory.findIndex(i => i.id === Number(req.params.id));
   if (idx === -1) return res.status(404).json({ error: 'Не знайдено' });
 
-  // Видалити фото з диску
+  // Видаляємо файл з диску
   const photo = db.inventory[idx].photo;
   if (photo) {
-    const photoPath = path.join(__dirname, 'public', photo);
-    if (fs.existsSync(photoPath)) fs.unlinkSync(photoPath);
+    const photoPath = path.join(__dirname, '..', 'public', photo);
+    
+    if (fs.existsSync(photoPath)) {
+      try {
+        fs.unlinkSync(photoPath);
+      } catch (err) {
+        console.error("Помилка при видаленні файлу:", err);
+      }
+    }
   }
-
+  //Видаляємо запис із масиву
   db.inventory.splice(idx, 1);
   writeDb(db);
+  
   res.status(204).send();
 });
 
