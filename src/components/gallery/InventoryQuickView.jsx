@@ -2,15 +2,6 @@ import { useEffect } from 'react';
 import styles from '../../styles/gallery.module.css';
 
 export default function InventoryQuickView({ item, isFavorite, onToggleFavorite, onClose }) {
-  // Close on Escape
-  useEffect(() => {
-    function onKey(e) {
-      if (e.key === 'Escape') onClose();
-    }
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
-  }, [onClose]);
-
   // Prevent body scroll
   useEffect(() => {
     document.body.style.overflow = 'hidden';
